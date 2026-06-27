@@ -23,12 +23,16 @@ void main() {
 
     group('toTitleCase', () {
       test('should convert to Title Case respecting minor words', () {
-        expect('the lord of the rings'.toTitleCase(),
-            equals('The Lord of the Rings'));
+        expect(
+          'the lord of the rings'.toTitleCase(),
+          equals('The Lord of the Rings'),
+        );
       });
       test('should capitalize first and last word even if minor', () {
-        expect('a game of thrones of'.toTitleCase(),
-            equals('A Game of Thrones Of'));
+        expect(
+          'a game of thrones of'.toTitleCase(),
+          equals('A Game of Thrones Of'),
+        );
       });
     });
 
@@ -117,6 +121,12 @@ void main() {
       test('should respect maskChar', () {
         expect('1234'.mask(visibleCount: 1, maskChar: '#'), equals('###4'));
       });
+      test(
+        'should return original when visibleCount is greater than length',
+        () {
+          expect('1234'.mask(visibleCount: 10), equals('1234'));
+        },
+      );
     });
 
     group('initials', () {
@@ -188,7 +198,10 @@ void main() {
 
     group('charFrequency', () {
       test('should calculate frequencies', () {
-        expect('hello'.charFrequency(), equals({'h': 1, 'e': 1, 'l': 2, 'o': 1}));
+        expect(
+          'hello'.charFrequency(),
+          equals({'h': 1, 'e': 1, 'l': 2, 'o': 1}),
+        );
       });
     });
 
@@ -199,9 +212,12 @@ void main() {
       test('should unwrap string', () {
         expect('[content]'.unwrap('[', ']'), equals('content'));
       });
-      test('should return original string if it does not match wrap delimiters', () {
-        expect('content'.unwrap('[', ']'), equals('content'));
-      });
+      test(
+        'should return original string if it does not match wrap delimiters',
+        () {
+          expect('content'.unwrap('[', ']'), equals('content'));
+        },
+      );
     });
 
     group('toIntOrNull & toDoubleOrNull', () {
@@ -226,12 +242,18 @@ void main() {
 
     group('replaceMultiple', () {
       test('should replace multiple matches in single pass', () {
-        final result = 'hello world'.replaceMultiple({'hello': 'hi', 'world': 'there'});
+        final result = 'hello world'.replaceMultiple({
+          'hello': 'hi',
+          'world': 'there',
+        });
         expect(result, equals('hi there'));
       });
 
       test('should ignore empty keys and prevent infinite loops', () {
-        final result = 'hello world'.replaceMultiple({'': 'ignore', 'hello': 'hi'});
+        final result = 'hello world'.replaceMultiple({
+          '': 'ignore',
+          'hello': 'hi',
+        });
         expect(result, equals('hi world'));
       });
     });

@@ -1,9 +1,9 @@
 name: swissarmyknife
 description: >-
-  The ultimate Dart utility toolkit. 40+ modules covering extensions,
-  functional types, networking, caching, state machines, and more —
-  all behind a single import.
+  A Dart utility toolkit with 40+ extension helpers for strings,
+  collections, dates, futures, maps, and more — all behind a single import.
 version: 0.1.0
+license: MIT
 homepage: https://github.com/turkananation/swissarmyknife
 repository: https://github.com/turkananation/swissarmyknife
 issue_tracker: https://github.com/turkananation/swissarmyknife/issues
