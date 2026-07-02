@@ -176,6 +176,113 @@ extension StreamKnife<T> on Stream<T> {
     return controller.stream;
   }
 
+  /// Emits only the latest event after [duration] passes without a new event.
+  ///
+  /// Example:
+  /// ```dart
+  /// final debounced = searchTextChanges.debounce(
+  ///   const Duration(milliseconds: 300),
+  /// );
+  /// ```
+  Stream<T> debounce(Duration duration) {
+    late StreamController<T> controller;
+    StreamSubscription<T>? subscription;
+    Timer? timer;
+    T? latest;
+    var hasLatest = false;
+
+    void emitLatest() {
+      if (!hasLatest || controller.isClosed) return;
+      controller.add(latest as T);
+      hasLatest = false;
+      latest = null;
+    }
+
+    controller = StreamController<T>(
+      onListen: () {
+        subscription = listen(
+          (data) {
+            latest = data;
+            hasLatest = true;
+            timer?.cancel();
+            timer = Timer(duration, emitLatest);
+          },
+          onError: (Object error, StackTrace stackTrace) {
+            controller.addError(error, stackTrace);
+          },
+          onDone: () {
+            timer?.cancel();
+            emitLatest();
+            controller.close();
+          },
+          cancelOnError: false,
+        );
+      },
+      onPause: () {
+        subscription?.pause();
+        timer?.cancel();
+      },
+      onResume: () {
+        subscription?.resume();
+        if (hasLatest) {
+          timer = Timer(duration, emitLatest);
+        }
+      },
+      onCancel: () async {
+        timer?.cancel();
+        await subscription?.cancel();
+      },
+    );
+
+    return controller.stream;
+  }
+
+  /// Emits the first event immediately, then suppresses events for [duration].
+  ///
+  /// Example:
+  /// ```dart
+  /// final throttled = scrollEvents.throttle(const Duration(milliseconds: 100));
+  /// ```
+  Stream<T> throttle(Duration duration) {
+    late StreamController<T> controller;
+    StreamSubscription<T>? subscription;
+    Timer? timer;
+
+    controller = StreamController<T>(
+      onListen: () {
+        subscription = listen(
+          (data) {
+            if (timer?.isActive ?? false) return;
+            controller.add(data);
+            timer = Timer(duration, () {
+              timer = null;
+            });
+          },
+          onError: (Object error, StackTrace stackTrace) {
+            controller.addError(error, stackTrace);
+          },
+          onDone: () {
+            timer?.cancel();
+            controller.close();
+          },
+          cancelOnError: false,
+        );
+      },
+      onPause: () {
+        subscription?.pause();
+      },
+      onResume: () {
+        subscription?.resume();
+      },
+      onCancel: () async {
+        timer?.cancel();
+        await subscription?.cancel();
+      },
+    );
+
+    return controller.stream;
+  }
+
   /// Triggers the side-effect [action] for each element emitted.
   ///
   /// This does not transform or modify the stream elements.
