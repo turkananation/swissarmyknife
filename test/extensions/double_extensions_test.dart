@@ -29,9 +29,12 @@ void main() {
         expect(15.0.inverseLerp(10.0, 20.0), equals(0.5));
       });
 
-      test('should return 0.0 when min equals max to avoid division by zero', () {
-        expect(10.0.inverseLerp(10.0, 10.0), equals(0.0));
-      });
+      test(
+        'should return 0.0 when min equals max to avoid division by zero',
+        () {
+          expect(10.0.inverseLerp(10.0, 10.0), equals(0.0));
+        },
+      );
 
       test('should return ratio outside 0..1 for values outside range', () {
         expect(25.0.inverseLerp(10.0, 20.0), equals(1.5));
@@ -61,16 +64,22 @@ void main() {
     });
 
     group('toPrecision', () {
-      test('should round to specified significant digits for positive number', () {
-        expect(123.456.toPrecision(3), equals(123.0));
-        expect(123.456.toPrecision(4), equals(123.5));
-        expect(0.0012345.toPrecision(2), equals(0.0012));
-      });
+      test(
+        'should round to specified significant digits for positive number',
+        () {
+          expect(123.456.toPrecision(3), equals(123.0));
+          expect(123.456.toPrecision(4), equals(123.5));
+          expect(0.0012345.toPrecision(2), equals(0.0012));
+        },
+      );
 
-      test('should round to specified significant digits for negative number', () {
-        expect((-123.456).toPrecision(3), equals(-123.0));
-        expect((-0.0012345).toPrecision(2), equals(-0.0012));
-      });
+      test(
+        'should round to specified significant digits for negative number',
+        () {
+          expect((-123.456).toPrecision(3), equals(-123.0));
+          expect((-0.0012345).toPrecision(2), equals(-0.0012));
+        },
+      );
 
       test('should return original value for zero, NaN, or infinity', () {
         expect(0.0.toPrecision(3), equals(0.0));

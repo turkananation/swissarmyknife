@@ -1,5 +1,15 @@
 ## 0.1.0
 
+- Added release-grade package metadata, platform declarations, and public
+  documentation links for the v0.1.0 package boundary.
+- Added a Jaspr documentation site and GitHub Pages deployment workflow.
+- Added CI, tag-triggered GitHub release workflow, and local release verifier
+  covering format, analysis, tests, web compilation, dartdoc, pub dry-run, and
+  site build.
+- Added `.pubignore` to keep agent files, release tooling, local wiki source,
+  and site source out of the pub.dev archive.
+- Made `Env` use conditional platform access so the public barrel import can
+  compile for web while `Env.load()` remains a Dart VM file-loading API.
 - Added sealed `Result`, `Option`, and `Either` functional types.
 - Added immutable `Pair` and `Triple` tuple types.
 - Added reusable `Pipe`, `AsyncPipe`, `Pipeline`, and `AsyncPipeline` helpers.

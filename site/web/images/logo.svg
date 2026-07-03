@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="SwissArmyKnife">
+  <rect width="96" height="96" rx="22" fill="#111827"/>
+  <path d="M22 66c0-22 18-40 40-40h8c2 0 4 2 4 4v7c0 22-18 40-40 40h-8c-2 0-4-2-4-4v-7z" fill="#f8fafc"/>
+  <path d="M25 63c0-17 14-31 31-31h10v4c0 17-14 31-31 31H25v-4z" fill="#047857"/>
+  <path d="M33 56l28-28" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="35" cy="61" r="5" fill="#f8fafc"/>
+</svg>

@@ -102,9 +102,12 @@ void main() {
         expect(12345.digitSum, equals(15));
       });
 
-      test('should return sum of digits for negative numbers using absolute value', () {
-        expect((-987).digitSum, equals(24));
-      });
+      test(
+        'should return sum of digits for negative numbers using absolute value',
+        () {
+          expect((-987).digitSum, equals(24));
+        },
+      );
 
       test('should return 0 for zero', () {
         expect(0.digitSum, equals(0));

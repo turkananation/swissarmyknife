@@ -4,12 +4,14 @@ import 'package:test/test.dart';
 void main() {
   group('SetKnife', () {
     group('symmetricDifference', () {
-      test('should return correct symmetric difference for overlapping sets',
-          () {
-        final a = {1, 2};
-        final b = {2, 3};
-        expect(a.symmetricDifference(b), equals({1, 3}));
-      });
+      test(
+        'should return correct symmetric difference for overlapping sets',
+        () {
+          final a = {1, 2};
+          final b = {2, 3};
+          expect(a.symmetricDifference(b), equals({1, 3}));
+        },
+      );
 
       test('should return union for disjoint sets', () {
         final a = {1, 2};
@@ -56,12 +58,7 @@ void main() {
         final b = {'a', 'b'};
         expect(
           a.cartesianProduct(b),
-          equals({
-            (1, 'a'),
-            (1, 'b'),
-            (2, 'a'),
-            (2, 'b'),
-          }),
+          equals({(1, 'a'), (1, 'b'), (2, 'a'), (2, 'b')}),
         );
       });
 

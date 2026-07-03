@@ -1,0 +1,13 @@
+.agents/
+.dart_tool/
+.github/
+build/
+coverage/
+doc/api/
+site/
+tool/
+wiki/
+AGENTS.md
+CLAUDE.md
+PROGRESS.md
+ROADMAP.md

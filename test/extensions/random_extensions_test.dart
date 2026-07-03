@@ -31,7 +31,10 @@ void main() {
       });
 
       test('should throw if elements and weights lengths mismatch', () {
-        expect(() => random.nextWeightedElement(['A'], [0.5, 0.5]), throwsArgumentError);
+        expect(
+          () => random.nextWeightedElement(['A'], [0.5, 0.5]),
+          throwsArgumentError,
+        );
       });
     });
 

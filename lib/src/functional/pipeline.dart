@@ -16,7 +16,7 @@ import 'result.dart';
 ///     .then((s) => int.parse(s));
 /// ```
 final class Pipe<T, R> {
-  /// Creates a reusable pipe from [transform].
+  /// Creates a reusable pipe from the supplied transformation.
   const Pipe(this._transform);
 
   final R Function(T value) _transform;
@@ -42,7 +42,7 @@ final class Pipe<T, R> {
 
 /// A reusable asynchronous transformation from [T] to [R].
 final class AsyncPipe<T, R> {
-  /// Creates a reusable async pipe from [transform].
+  /// Creates a reusable async pipe from the supplied transformation.
   const AsyncPipe(this._transform);
 
   final FutureOr<R> Function(T value) _transform;

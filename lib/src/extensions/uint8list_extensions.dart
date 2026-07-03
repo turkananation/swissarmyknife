@@ -26,8 +26,9 @@ extension Uint8ListKnife on Uint8List {
   /// print(bytes.toHexString(separator: ':')); // 'DE:AD:BE:EF'
   /// ```
   String toHexString({String separator = ''}) {
-    return map((byte) => byte.toRadixString(16).padLeft(2, '0').toUpperCase())
-        .join(separator);
+    return map(
+      (byte) => byte.toRadixString(16).padLeft(2, '0').toUpperCase(),
+    ).join(separator);
   }
 
   /// Encodes this byte list into a Base64 string.

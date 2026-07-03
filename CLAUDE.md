@@ -1,95 +1,54 @@
-# CLAUDE.md — SwissArmyKnife Developer Guide
+# CLAUDE.md - SwissArmyKnife Developer Guide
 
 ## Project Overview
-SwissArmyKnife is a comprehensive Dart utility package providing 40+ modules
-covering extensions, functional types, networking, caching, state machines,
-and architectural patterns — all behind a single import.
 
-## Architecture
+SwissArmyKnife is a Dart utility package that exposes extensions, functional
+types, async helpers, data utilities, networking helpers, time utilities,
+logging, and architecture primitives behind one public import.
+
+```dart
+import 'package:swissarmyknife/swissarmyknife.dart';
 ```
+
+## Source Layout
+
+```text
 lib/
-  swissarmyknife.dart          # Barrel file — single entry point
+  swissarmyknife.dart
   src/
-    extensions/                # Tier 1 — Pure Dart extensions
-      string_extensions.dart
-      num_extensions.dart
-      datetime_extensions.dart
-      collection_extensions.dart
-      map_extensions.dart
-      bool_extensions.dart
-      type_converters.dart
-    functional/                # Tier 2 — Functional & async patterns
-      result.dart
-      option.dart
-      either.dart
-      tuple.dart
-      pipeline.dart
-    async/                     # Tier 2-3 — Async utilities
-      debouncer.dart
-      throttler.dart
-      retry.dart
-      rate_limiter.dart
-    patterns/                  # Tier 2-4 — Design patterns
-      event_bus.dart
-      disposable.dart
-      validator.dart
-      command.dart
-      state_machine.dart
-      lazy.dart
-    networking/                # Tier 3 — HTTP & networking
-      http_client.dart
-      api_client_builder.dart
-    data/                      # Tier 3 — Data utilities
-      safe_json.dart
-      cache_manager.dart
-      env_config.dart
-      schema_validator.dart
-    crypto/                    # Tier 3 — Crypto helpers
-      crypto_helpers.dart
-    logging/                   # Tier 3 — Logger
-      logger.dart
-    time/                      # Tier 3 — Time utilities
-      benchmark.dart
-      date_range.dart
-      cron_scheduler.dart
-    advanced/                  # Tier 4-5 — Advanced
-      memoize.dart
-      circuit_breaker.dart
-      task_queue.dart
-      tree_utils.dart
-      codec_pipeline.dart
-      expression_evaluator.dart
-      reactive_store.dart
-      middleware_pipeline.dart
+    advanced/
+    async/
+    data/
+    extensions/
+    functional/
+    logging/
+    networking/
+    patterns/
+    time/
 ```
+
+Tests mirror the `lib/src/` layout under `test/`.
 
 ## Coding Standards
-- Every public API **must** have a dartdoc comment with an example
-- Every file **must** export only through the barrel file
-- Use `extension` types for all Dart type extensions
-- Prefer `const` constructors wherever possible
-- Every module **must** have corresponding tests in `test/`
-- Follow effective Dart style: https://dart.dev/effective-dart
-- APIs should be **fluent** and **chainable** wherever possible
-- Return `Result<T, E>` instead of throwing exceptions in library code
-- Use named parameters for optional configuration
-- Provide sensible defaults for everything
 
-## Testing
+- Public APIs must have dartdoc.
+- Export public APIs through `lib/swissarmyknife.dart`.
+- Do not import `lib/src/` files from examples or public docs.
+- Prefer small typed utilities over framework-scale abstractions.
+- Keep dependency count low; `http` is the only runtime dependency in v0.1.0.
+- Keep web compilation intact for the public barrel import.
+
+## Verification
+
 ```bash
-dart test                    # Run all tests
-dart test test/extensions/   # Run extension tests only
-dart analyze                 # Static analysis
+dart run tool/agent/verify.dart quick
+dart run tool/agent/verify.dart release
 ```
 
-## Dependencies Policy
-- **Minimize dependencies** — prefer pure Dart implementations
-- Only allowed external deps: `crypto`, `http`, `uuid`
-- Everything else is hand-rolled
+`quick` runs format, analysis, and tests. `release` also runs web compilation,
+dartdoc, pub publish dry-run, and the Jaspr site build.
 
-## API Design Principles
-1. **One import**: `import 'package:swissarmyknife/swissarmyknife.dart';`
-2. **Zero config**: Everything works out of the box
-3. **Progressive disclosure**: Simple API surface, advanced options via named params
-4. **Type safe**: Leverage Dart's type system to prevent runtime errors
-5. **Composable**: Every utility should compose with others
+## Release Rule
+
+Releases are tag-first. Tag the verified commit as `v<version>` and push the
+tag to trigger the GitHub release workflow.

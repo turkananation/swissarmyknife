@@ -143,8 +143,9 @@ extension StringMapKnife on Map<String, dynamic> {
       for (final entry in map.entries) {
         final key = entry.key.toString();
         final val = entry.value;
-        final newPath =
-            currentPath.isEmpty ? key : '$currentPath$separator$key';
+        final newPath = currentPath.isEmpty
+            ? key
+            : '$currentPath$separator$key';
         if (val is Map) {
           helper(newPath, val);
         } else {
@@ -274,8 +275,9 @@ extension StringMapKnife on Map<String, dynamic> {
 /// ```
 Map<String, dynamic> queryStringToMap(String queryString) {
   if (queryString.isEmpty) return const {};
-  final query =
-      queryString.startsWith('?') ? queryString.substring(1) : queryString;
+  final query = queryString.startsWith('?')
+      ? queryString.substring(1)
+      : queryString;
   final result = <String, dynamic>{};
   final parts = query.split('&');
   for (final part in parts) {

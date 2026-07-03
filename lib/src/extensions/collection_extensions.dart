@@ -375,10 +375,7 @@ extension ListKnife<T> on List<T> {
     var shift = positions % len;
     if (shift < 0) shift += len;
     if (shift == 0) return toList();
-    return [
-      ...sublist(len - shift),
-      ...sublist(0, len - shift),
-    ];
+    return [...sublist(len - shift), ...sublist(0, len - shift)];
   }
 
   /// Alternates elements of this list with elements from [other].

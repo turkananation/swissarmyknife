@@ -28,10 +28,7 @@ void main() {
   group('MapEntryIterableKnife', () {
     group('toMap', () {
       test('should convert iterable of MapEntry to Map', () {
-        final entries = [
-          const MapEntry('a', 1),
-          const MapEntry('b', 2),
-        ];
+        final entries = [const MapEntry('a', 1), const MapEntry('b', 2)];
         final map = entries.toMap();
         expect(map, equals({'a': 1, 'b': 2}));
       });
@@ -53,10 +50,7 @@ void main() {
       });
 
       test('should convert iterable of MapEntry to list of record pairs', () {
-        final entries = [
-          const MapEntry('a', 1),
-          const MapEntry('b', 2),
-        ];
+        final entries = [const MapEntry('a', 1), const MapEntry('b', 2)];
         final pairs = entries.toPairs();
         expect(pairs.length, equals(2));
         expect(pairs[0].$1, equals('a'));

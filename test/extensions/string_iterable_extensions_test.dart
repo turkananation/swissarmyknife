@@ -11,25 +11,40 @@ void main() {
         expect(<String>[].joinWithLast(', ', ', and '), equals(''));
       });
 
-      test('should return the element itself when collection has 1 element', () {
-        expect(['apple'].joinWithLast(', ', ', and '), equals('apple'));
-      });
+      test(
+        'should return the element itself when collection has 1 element',
+        () {
+          expect(['apple'].joinWithLast(', ', ', and '), equals('apple'));
+        },
+      );
 
-      test('should use only the last separator when collection has 2 elements', () {
-        expect(['apple', 'banana'].joinWithLast(', ', ', and '), equals('apple, and banana'));
-        expect(['apple', 'banana'].joinWithLast(', ', ' & '), equals('apple & banana'));
-      });
+      test(
+        'should use only the last separator when collection has 2 elements',
+        () {
+          expect(
+            ['apple', 'banana'].joinWithLast(', ', ', and '),
+            equals('apple, and banana'),
+          );
+          expect(
+            ['apple', 'banana'].joinWithLast(', ', ' & '),
+            equals('apple & banana'),
+          );
+        },
+      );
 
-      test('should use separator and lastSeparator when collection has 3+ elements', () {
-        expect(
-          ['apple', 'banana', 'cherry'].joinWithLast(', ', ', and '),
-          equals('apple, banana, and cherry'),
-        );
-        expect(
-          ['apple', 'banana', 'cherry', 'date'].joinWithLast(', ', ', and '),
-          equals('apple, banana, cherry, and date'),
-        );
-      });
+      test(
+        'should use separator and lastSeparator when collection has 3+ elements',
+        () {
+          expect(
+            ['apple', 'banana', 'cherry'].joinWithLast(', ', ', and '),
+            equals('apple, banana, and cherry'),
+          );
+          expect(
+            ['apple', 'banana', 'cherry', 'date'].joinWithLast(', ', ', and '),
+            equals('apple, banana, cherry, and date'),
+          );
+        },
+      );
     });
 
     group('longestCommonPrefix', () {
@@ -42,8 +57,14 @@ void main() {
       });
 
       test('should return the common prefix when it exists', () {
-        expect(['flower', 'flow', 'flight'].longestCommonPrefix(), equals('fl'));
-        expect(['interspecies', 'interstellar', 'interstate'].longestCommonPrefix(), equals('inters'));
+        expect(
+          ['flower', 'flow', 'flight'].longestCommonPrefix(),
+          equals('fl'),
+        );
+        expect(
+          ['interspecies', 'interstellar', 'interstate'].longestCommonPrefix(),
+          equals('inters'),
+        );
       });
 
       test('should return empty string when no common prefix exists', () {
@@ -60,7 +81,10 @@ void main() {
         final original = ['cherry', 'banana', 'apple', 'Apple'];
         final result = original.sorted();
         expect(result, equals(['Apple', 'apple', 'banana', 'cherry']));
-        expect(original, equals(['cherry', 'banana', 'apple', 'Apple'])); // non-mutating
+        expect(
+          original,
+          equals(['cherry', 'banana', 'apple', 'Apple']),
+        ); // non-mutating
       });
     });
 

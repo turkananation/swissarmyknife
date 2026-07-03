@@ -21,7 +21,8 @@ extension StringKnife on String {
       if (i > 0) {
         final prev = this[i - 1];
         final isLowerToUpper = _isLowercase(prev) && _isUppercase(char);
-        final isUpperWordBoundary = i < length - 1 &&
+        final isUpperWordBoundary =
+            i < length - 1 &&
             _isUppercase(prev) &&
             _isUppercase(char) &&
             _isLowercase(this[i + 1]);

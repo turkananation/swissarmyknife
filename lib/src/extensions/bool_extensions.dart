@@ -61,11 +61,7 @@ extension BoolKnife on bool {
   /// ```dart
   /// final color = isPrimary.when(isTrue: Colors.blue, isFalse: Colors.grey);
   /// ```
-  T when<T>({
-    required T isTrue,
-    required T isFalse,
-  }) =>
-      this ? isTrue : isFalse;
+  T when<T>({required T isTrue, required T isFalse}) => this ? isTrue : isFalse;
 
   /// Executes [action] if this boolean is `true`.
   ///

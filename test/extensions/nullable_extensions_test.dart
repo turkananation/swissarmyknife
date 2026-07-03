@@ -30,16 +30,19 @@ void main() {
         expect(called, isTrue);
       });
 
-      test('should not call compute and return original value when nullable is not null', () {
-        int? number = 10;
-        var called = false;
-        final result = number.orCompute(() {
-          called = true;
-          return 42;
-        });
-        expect(result, equals(10));
-        expect(called, isFalse);
-      });
+      test(
+        'should not call compute and return original value when nullable is not null',
+        () {
+          int? number = 10;
+          var called = false;
+          final result = number.orCompute(() {
+            called = true;
+            return 42;
+          });
+          expect(result, equals(10));
+          expect(called, isFalse);
+        },
+      );
     });
 
     group('guard', () {

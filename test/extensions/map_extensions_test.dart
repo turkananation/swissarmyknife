@@ -42,11 +42,17 @@ void main() {
     group('mapKeys & mapValuesWithKey', () {
       test('mapKeys', () {
         final map = {'a': 1, 'b': 2};
-        expect(map.mapKeys((k, v) => k.toUpperCase()), equals({'A': 1, 'B': 2}));
+        expect(
+          map.mapKeys((k, v) => k.toUpperCase()),
+          equals({'A': 1, 'B': 2}),
+        );
       });
       test('mapValuesWithKey', () {
         final map = {'a': 1, 'b': 2};
-        expect(map.mapValuesWithKey((k, v) => v * 10), equals({'a': 10, 'b': 20}));
+        expect(
+          map.mapValuesWithKey((k, v) => v * 10),
+          equals({'a': 10, 'b': 20}),
+        );
       });
     });
   });
@@ -54,14 +60,23 @@ void main() {
   group('StringMapKnife', () {
     group('deepMerge', () {
       test('should recursively merge maps', () {
-        final m1 = {'a': {'b': 1}, 'c': 2};
-        final m2 = {'a': {'d': 3}, 'e': 4};
-        final merged = m1.deepMerge(m2);
-        expect(merged, equals({
-          'a': {'b': 1, 'd': 3},
+        final m1 = {
+          'a': {'b': 1},
           'c': 2,
+        };
+        final m2 = {
+          'a': {'d': 3},
           'e': 4,
-        }));
+        };
+        final merged = m1.deepMerge(m2);
+        expect(
+          merged,
+          equals({
+            'a': {'b': 1, 'd': 3},
+            'c': 2,
+            'e': 4,
+          }),
+        );
       });
     });
 
@@ -71,27 +86,27 @@ void main() {
           'user': {
             'profile': {'name': 'John'},
             'age': 30,
-          }
+          },
         };
         final flattened = nested.flattenKeys();
-        expect(flattened, equals({
-          'user.profile.name': 'John',
-          'user.age': 30,
-        }));
+        expect(
+          flattened,
+          equals({'user.profile.name': 'John', 'user.age': 30}),
+        );
       });
 
       test('should unflatten keys back to nested structure', () {
-        final flat = {
-          'user.profile.name': 'John',
-          'user.age': 30,
-        };
+        final flat = {'user.profile.name': 'John', 'user.age': 30};
         final unflattened = flat.unflattenKeys();
-        expect(unflattened, equals({
-          'user': {
-            'profile': {'name': 'John'},
-            'age': 30,
-          }
-        }));
+        expect(
+          unflattened,
+          equals({
+            'user': {
+              'profile': {'name': 'John'},
+              'age': 30,
+            },
+          }),
+        );
       });
     });
 
@@ -99,8 +114,8 @@ void main() {
       test('getNestedValue', () {
         final map = {
           'user': {
-            'profile': {'name': 'John'}
-          }
+            'profile': {'name': 'John'},
+          },
         };
         expect(map.getNestedValue('user.profile.name'), equals('John'));
         expect(map.getNestedValue('user.age'), isNull);
@@ -109,11 +124,14 @@ void main() {
       test('setNestedValue', () {
         final map = <String, dynamic>{};
         final updated = map.setNestedValue('user.profile.name', 'John');
-        expect(updated, equals({
-          'user': {
-            'profile': {'name': 'John'}
-          }
-        }));
+        expect(
+          updated,
+          equals({
+            'user': {
+              'profile': {'name': 'John'},
+            },
+          }),
+        );
       });
     });
 
@@ -125,7 +143,10 @@ void main() {
 
       test('queryStringToMap', () {
         final query = 'name=John%20Doe&age=30';
-        expect(queryStringToMap(query), equals({'name': 'John Doe', 'age': '30'}));
+        expect(
+          queryStringToMap(query),
+          equals({'name': 'John Doe', 'age': '30'}),
+        );
       });
     });
 

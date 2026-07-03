@@ -1,0 +1,62 @@
+name: Pages
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build Jaspr site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1.7
+        with:
+          sdk: "3.12.0"
+
+      - name: Install site dependencies
+        working-directory: site
+        run: dart pub get
+
+      - name: Activate Jaspr
+        run: dart pub global activate jaspr_cli
+
+      - name: Build site
+        working-directory: site
+        run: dart pub global run jaspr_cli:jaspr build --verbose --sitemap-domain https://turkananation.github.io/swissarmyknife
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/build/jaspr
+
+  deploy:
+    name: Deploy Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

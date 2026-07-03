@@ -62,7 +62,9 @@ extension DateTimeKnife on DateTime {
   ///
   /// By default, the week starts on [DateTime.monday].
   DateTime endOfWeek({int startDay = DateTime.monday}) {
-    return startOfWeek(startDay: startDay).add(const Duration(days: 6)).endOfDay;
+    return startOfWeek(
+      startDay: startDay,
+    ).add(const Duration(days: 6)).endOfDay;
   }
 
   /// Returns a new [DateTime] representing the first day of this month.

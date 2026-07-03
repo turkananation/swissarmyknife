@@ -4,7 +4,7 @@
 /// already-loaded configuration maps.
 library;
 
-import 'dart:io';
+import 'env_source.dart';
 
 /// Process-wide environment configuration.
 ///
@@ -20,13 +20,11 @@ final class Env {
 
   /// Loads dotenv-style values from [path].
   ///
-  /// Existing loaded values are replaced.
+  /// Existing loaded values are replaced. File loading is available on Dart VM
+  /// platforms. Browser builds should use [fromMap] with configuration supplied
+  /// by the application shell.
   static void load(String path) {
-    final file = File(path);
-    if (!file.existsSync()) {
-      throw ArgumentError.value(path, 'path', 'File does not exist.');
-    }
-    fromMap(_parse(file.readAsLinesSync()));
+    fromMap(_parse(readEnvFile(path)));
   }
 
   /// Replaces current values from [values].
@@ -38,7 +36,7 @@ final class Env {
 
   /// Returns required value [key], or throws if missing.
   static String get(String key) {
-    final value = _values[key] ?? Platform.environment[key];
+    final value = _values[key] ?? platformEnvironmentValue(key);
     if (value == null) {
       throw StateError('Missing required environment value: $key');
     }
@@ -47,7 +45,7 @@ final class Env {
 
   /// Returns optional value [key], or `null`.
   static String? getOrNull(String key) {
-    return _values[key] ?? Platform.environment[key];
+    return _values[key] ?? platformEnvironmentValue(key);
   }
 
   /// Returns value [key], or [defaultValue].

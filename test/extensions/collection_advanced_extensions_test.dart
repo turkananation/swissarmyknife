@@ -6,16 +6,35 @@ void main() {
     group('slidingWindow', () {
       test('should yield overlapping windows of size', () {
         final list = [1, 2, 3, 4];
-        expect(list.slidingWindow(2).toList(), equals([[1, 2], [2, 3], [3, 4]]));
+        expect(
+          list.slidingWindow(2).toList(),
+          equals([
+            [1, 2],
+            [2, 3],
+            [3, 4],
+          ]),
+        );
       });
       test('should handle step', () {
         final list = [1, 2, 3, 4, 5];
-        expect(list.slidingWindow(2, step: 2).toList(), equals([[1, 2], [3, 4]]));
+        expect(
+          list.slidingWindow(2, step: 2).toList(),
+          equals([
+            [1, 2],
+            [3, 4],
+          ]),
+        );
       });
       test('should handle partialWindows', () {
         final list = [1, 2, 3, 4, 5];
-        expect(list.slidingWindow(2, step: 2, partialWindows: true).toList(),
-            equals([[1, 2], [3, 4], [5]]));
+        expect(
+          list.slidingWindow(2, step: 2, partialWindows: true).toList(),
+          equals([
+            [1, 2],
+            [3, 4],
+            [5],
+          ]),
+        );
       });
     });
 
@@ -40,9 +59,17 @@ void main() {
         final list = [1, 2, 3];
         final perms = list.permutations().toList();
         expect(perms.length, equals(6));
-        expect(perms, containsAll([
-          [1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]
-        ]));
+        expect(
+          perms,
+          containsAll([
+            [1, 2, 3],
+            [1, 3, 2],
+            [2, 1, 3],
+            [2, 3, 1],
+            [3, 1, 2],
+            [3, 2, 1],
+          ]),
+        );
       });
     });
 
@@ -51,7 +78,14 @@ void main() {
         final list = [1, 2, 3];
         final combos = list.combinations(2).toList();
         expect(combos.length, equals(3));
-        expect(combos, containsAll([[1, 2], [1, 3], [2, 3]]));
+        expect(
+          combos,
+          containsAll([
+            [1, 2],
+            [1, 3],
+            [2, 3],
+          ]),
+        );
       });
     });
 

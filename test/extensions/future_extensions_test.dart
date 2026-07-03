@@ -5,15 +5,23 @@ import 'package:test/test.dart';
 void main() {
   group('FutureKnife', () {
     group('timeoutOrNull', () {
-      test('should return value when future completes within timeout', () async {
-        final future = Future.value(42);
-        final result = await future.timeoutOrNull(const Duration(seconds: 1));
-        expect(result, equals(42));
-      });
+      test(
+        'should return value when future completes within timeout',
+        () async {
+          final future = Future.value(42);
+          final result = await future.timeoutOrNull(const Duration(seconds: 1));
+          expect(result, equals(42));
+        },
+      );
 
       test('should return null when future times out', () async {
-        final future = Future<int>.delayed(const Duration(milliseconds: 100), () => 42);
-        final result = await future.timeoutOrNull(const Duration(milliseconds: 10));
+        final future = Future<int>.delayed(
+          const Duration(milliseconds: 100),
+          () => 42,
+        );
+        final result = await future.timeoutOrNull(
+          const Duration(milliseconds: 10),
+        );
         expect(result, isNull);
       });
     });

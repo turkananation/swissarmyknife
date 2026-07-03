@@ -46,12 +46,7 @@ extension DoubleKnife on double {
   /// ```dart
   /// print(5.0.remap(0.0, 10.0, 0.0, 100.0)); // 50.0
   /// ```
-  double remap(
-    double inMin,
-    double inMax,
-    double outMin,
-    double outMax,
-  ) {
+  double remap(double inMin, double inMax, double outMin, double outMax) {
     final t = inverseLerp(inMin, inMax);
     return outMin + (outMax - outMin) * t;
   }

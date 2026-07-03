@@ -28,10 +28,12 @@ void main() {
     group('bufferTime', () {
       test('should buffer events emitted during time window', () async {
         final controller = StreamController<int>();
-        final stream = controller.stream.bufferTime(const Duration(milliseconds: 50));
-        
+        final stream = controller.stream.bufferTime(
+          const Duration(milliseconds: 50),
+        );
+
         final listFuture = stream.toList();
-        
+
         controller.add(1);
         controller.add(2);
         await Future<void>.delayed(const Duration(milliseconds: 60));
@@ -47,7 +49,10 @@ void main() {
 
     group('delay', () {
       test('should delay stream event emissions', () async {
-        final stream = Stream.fromIterable([1, 2]).delay(const Duration(milliseconds: 50));
+        final stream = Stream.fromIterable([
+          1,
+          2,
+        ]).delay(const Duration(milliseconds: 50));
         final stopwatch = Stopwatch()..start();
         final result = await stream.toList();
         stopwatch.stop();
@@ -58,25 +63,32 @@ void main() {
     });
 
     group('tap', () {
-      test('should trigger side-effects without altering stream data', () async {
-        final items = <int>[];
-        final stream = Stream.fromIterable([1, 2, 3]).tap((val) => items.add(val * 10));
-        final result = await stream.toList();
+      test(
+        'should trigger side-effects without altering stream data',
+        () async {
+          final items = <int>[];
+          final stream = Stream.fromIterable([
+            1,
+            2,
+            3,
+          ]).tap((val) => items.add(val * 10));
+          final result = await stream.toList();
 
-        expect(result, equals([1, 2, 3]));
-        expect(items, equals([10, 20, 30]));
-      });
+          expect(result, equals([1, 2, 3]));
+          expect(items, equals([10, 20, 30]));
+        },
+      );
     });
 
     group('onErrorReturn', () {
       test('should emit default value and close on error', () async {
         final controller = StreamController<int>();
         final stream = controller.stream.onErrorReturn(-1);
-        
+
         final listFuture = stream.toList();
         controller.add(1);
         controller.addError(Exception('Ouch'));
-        
+
         // This add should not be received since stream closes on error.
         controller.add(2);
         await controller.close();

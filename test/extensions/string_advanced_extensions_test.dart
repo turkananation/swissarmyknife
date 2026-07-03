@@ -47,12 +47,19 @@ void main() {
     group('extractors', () {
       test('extractEmails', () {
         final text = 'Contact us at info@example.com or support@company.org.';
-        expect(text.extractEmails(), equals(['info@example.com', 'support@company.org']));
+        expect(
+          text.extractEmails(),
+          equals(['info@example.com', 'support@company.org']),
+        );
       });
 
       test('extractUrls', () {
-        final text = 'Links: http://google.com and https://github.com/foo/bar?q=1 .';
-        expect(text.extractUrls(), equals(['http://google.com', 'https://github.com/foo/bar?q=1']));
+        final text =
+            'Links: http://google.com and https://github.com/foo/bar?q=1 .';
+        expect(
+          text.extractUrls(),
+          equals(['http://google.com', 'https://github.com/foo/bar?q=1']),
+        );
       });
 
       test('extractPhoneNumbers', () {
@@ -64,7 +71,10 @@ void main() {
 
       test('extractHashtags', () {
         final text = 'Coding in #dart and #flutter is #fun_times!';
-        expect(text.extractHashtags(), equals(['#dart', '#flutter', '#fun_times']));
+        expect(
+          text.extractHashtags(),
+          equals(['#dart', '#flutter', '#fun_times']),
+        );
       });
 
       test('extractMentions', () {

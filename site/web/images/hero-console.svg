@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 780" role="img" aria-label="SwissArmyKnife release dashboard">
+  <rect width="1400" height="780" rx="34" fill="#0b1220"/>
+  <rect x="46" y="44" width="1308" height="692" rx="24" fill="#111827"/>
+  <rect x="86" y="84" width="1228" height="88" rx="18" fill="#f8fafc"/>
+  <circle cx="126" cy="128" r="12" fill="#ef4444"/>
+  <circle cx="164" cy="128" r="12" fill="#f59e0b"/>
+  <circle cx="202" cy="128" r="12" fill="#10b981"/>
+  <text x="250" y="138" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="30" font-weight="700" fill="#111827">package:swissarmyknife</text>
+  <rect x="86" y="214" width="598" height="230" rx="20" fill="#020617"/>
+  <text x="126" y="270" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" fill="#a7f3d0">import 'package:swissarmyknife/swissarmyknife.dart';</text>
+  <text x="126" y="322" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" fill="#f8fafc">final parsed = Result.runCatching(() =&gt; int.parse('42'));</text>
+  <text x="126" y="374" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" fill="#fbbf24">print(parsed.getOrElse(0));</text>
+  <rect x="716" y="214" width="598" height="230" rx="20" fill="#ecfdf5"/>
+  <text x="756" y="272" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="34" font-weight="800" fill="#064e3b">Release Gate</text>
+  <text x="756" y="326" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="26" fill="#065f46">format - analyze - test - web compile</text>
+  <text x="756" y="374" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="26" fill="#065f46">dartdoc - pub dry-run - Jaspr build</text>
+  <rect x="86" y="486" width="382" height="164" rx="20" fill="#f8fafc"/>
+  <text x="126" y="552" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="800" fill="#111827">One import</text>
+  <text x="126" y="602" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="24" fill="#374151">Extensions, functional types, async control</text>
+  <rect x="508" y="486" width="382" height="164" rx="20" fill="#fef3c7"/>
+  <text x="548" y="552" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="800" fill="#78350f">App glue</text>
+  <text x="548" y="602" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="24" fill="#92400e">HTTP, JSON, cache, env, logging</text>
+  <rect x="932" y="486" width="382" height="164" rx="20" fill="#dbeafe"/>
+  <text x="972" y="552" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="800" fill="#1e3a8a">Architecture</text>
+  <text x="972" y="602" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="24" fill="#1d4ed8">Queues, breakers, stores, middleware</text>
+</svg>

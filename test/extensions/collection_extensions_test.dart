@@ -7,21 +7,30 @@ void main() {
       test('should group items correctly', () {
         final list = ['apple', 'apricot', 'banana'];
         final grouped = list.groupBy((s) => s[0]);
-        expect(grouped, equals({
-          'a': ['apple', 'apricot'],
-          'b': ['banana'],
-        }));
+        expect(
+          grouped,
+          equals({
+            'a': ['apple', 'apricot'],
+            'b': ['banana'],
+          }),
+        );
       });
     });
 
     group('sortedBy & sortedByDescending', () {
       test('should sort ascending', () {
         final list = ['banana', 'apple', 'cherry'];
-        expect(list.sortedBy((s) => s.length), equals(['apple', 'banana', 'cherry']));
+        expect(
+          list.sortedBy((s) => s.length),
+          equals(['apple', 'banana', 'cherry']),
+        );
       });
       test('should sort descending', () {
         final list = ['apple', 'cherry', 'banana'];
-        expect(list.sortedByDescending((s) => s.length), equals(['cherry', 'banana', 'apple']));
+        expect(
+          list.sortedByDescending((s) => s.length),
+          equals(['cherry', 'banana', 'apple']),
+        );
       });
     });
 
@@ -35,7 +44,14 @@ void main() {
     group('chunk', () {
       test('should split list into chunks', () {
         final list = [1, 2, 3, 4, 5];
-        expect(list.chunk(2), equals([[1, 2], [3, 4], [5]]));
+        expect(
+          list.chunk(2),
+          equals([
+            [1, 2],
+            [3, 4],
+            [5],
+          ]),
+        );
       });
       test('should throw on chunk <= 0', () {
         expect(() => [1, 2].chunk(0), throwsArgumentError);
@@ -98,12 +114,19 @@ void main() {
       });
 
       test('mapIndexed', () {
-        final res = ['a', 'b'].mapIndexed((index, element) => '$index-$element').toList();
+        final res = [
+          'a',
+          'b',
+        ].mapIndexed((index, element) => '$index-$element').toList();
         expect(res, equals(['0-a', '1-b']));
       });
 
       test('whereIndexed', () {
-        final res = [10, 20, 30].whereIndexed((index, element) => index.isEven).toList();
+        final res = [
+          10,
+          20,
+          30,
+        ].whereIndexed((index, element) => index.isEven).toList();
         expect(res, equals([10, 30]));
       });
     });
@@ -119,13 +142,19 @@ void main() {
     group('takeWhileInclusive', () {
       test('should include first element that fails test', () {
         final list = [1, 2, 3, 4, 5];
-        expect(list.takeWhileInclusive((x) => x < 3).toList(), equals([1, 2, 3]));
+        expect(
+          list.takeWhileInclusive((x) => x < 3).toList(),
+          equals([1, 2, 3]),
+        );
       });
     });
 
     group('separatedBy', () {
       test('should insert separators', () {
-        expect(['a', 'b', 'c'].separatedBy('-').toList(), equals(['a', '-', 'b', '-', 'c']));
+        expect(
+          ['a', 'b', 'c'].separatedBy('-').toList(),
+          equals(['a', '-', 'b', '-', 'c']),
+        );
       });
     });
 
@@ -183,7 +212,10 @@ void main() {
 
   group('IterableFlatten', () {
     test('should flatten nested iterables', () {
-      final nested = [[1, 2], [3]];
+      final nested = [
+        [1, 2],
+        [3],
+      ];
       expect(nested.flatten().toList(), equals([1, 2, 3]));
     });
   });

@@ -20,9 +20,12 @@ void main() {
         expect(['apple', 'banana', 'cherry'].isSorted, isTrue);
       });
 
-      test('should return true for collection with duplicate sorted elements', () {
-        expect([1, 2, 2, 3, 3, 3].isSorted, isTrue);
-      });
+      test(
+        'should return true for collection with duplicate sorted elements',
+        () {
+          expect([1, 2, 2, 3, 3, 3].isSorted, isTrue);
+        },
+      );
 
       test('should return false for unsorted collection', () {
         expect([1, 3, 2].isSorted, isFalse);
@@ -44,9 +47,12 @@ void main() {
         expect(['cherry', 'banana', 'apple'].isSortedDescending, isTrue);
       });
 
-      test('should return true for collection with duplicate sorted elements', () {
-        expect([3, 3, 2, 2, 1, 1].isSortedDescending, isTrue);
-      });
+      test(
+        'should return true for collection with duplicate sorted elements',
+        () {
+          expect([3, 3, 2, 2, 1, 1].isSortedDescending, isTrue);
+        },
+      );
 
       test('should return false for unsorted collection', () {
         expect([3, 1, 2].isSortedDescending, isFalse);

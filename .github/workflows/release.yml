@@ -1,0 +1,45 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Verify tag and create GitHub release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1.7
+        with:
+          sdk: "3.12.0"
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Verify release
+        run: dart run tool/agent/verify.dart release
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          body: |
+            SwissArmyKnife ${GITHUB_REF_NAME}
+
+            Verified by the release workflow:
+            - dart format
+            - dart analyze
+            - dart test
+            - dart compile js
+            - dart doc
+            - dart pub publish --dry-run
+            - Jaspr documentation build

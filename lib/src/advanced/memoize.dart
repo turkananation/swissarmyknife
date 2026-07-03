@@ -71,7 +71,7 @@ AsyncMemoized0<V> memoizeAsync0<V extends Object>(
 /// final value = fib(40);
 /// ```
 final class Memoized<K, V extends Object> {
-  /// Creates a memoized wrapper around [compute].
+  /// Creates a memoized wrapper around the supplied computation.
   Memoized(
     this._compute, {
     MemoKeyOf<K>? keyOf,
@@ -149,7 +149,7 @@ final class Memoized0<V extends Object> {
 /// Concurrent calls for the same key share the same in-flight future. Failed
 /// computations are removed from the cache so a later call can retry.
 final class AsyncMemoized<K, V extends Object> {
-  /// Creates a memoized async wrapper around [compute].
+  /// Creates a memoized async wrapper around the supplied computation.
   AsyncMemoized(
     this._compute, {
     MemoKeyOf<K>? keyOf,

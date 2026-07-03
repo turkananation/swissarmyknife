@@ -51,7 +51,10 @@ void main() {
       test('startOfDay & endOfDay', () {
         final date = DateTime(2026, 6, 26, 15, 30, 45);
         expect(date.startOfDay, equals(DateTime(2026, 6, 26, 0, 0, 0)));
-        expect(date.endOfDay, equals(DateTime(2026, 6, 26, 23, 59, 59, 999, 999)));
+        expect(
+          date.endOfDay,
+          equals(DateTime(2026, 6, 26, 23, 59, 59, 999, 999)),
+        );
       });
 
       test('startOfWeek & endOfWeek', () {
@@ -126,8 +129,10 @@ void main() {
     group('format', () {
       test('should format with custom pattern', () {
         final date = DateTime(2026, 6, 26, 15, 30, 45);
-        expect(date.format('yyyy-MM-dd HH:mm:ss'),
-            equals('2026-06-26 15:30:45'));
+        expect(
+          date.format('yyyy-MM-dd HH:mm:ss'),
+          equals('2026-06-26 15:30:45'),
+        );
         expect(date.format('MMM d, yy'), equals('Jun 26, 26'));
       });
     });

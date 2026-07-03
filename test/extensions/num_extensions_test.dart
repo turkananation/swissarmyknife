@@ -4,11 +4,17 @@ import 'package:test/test.dart';
 void main() {
   group('NumKnife', () {
     group('toCurrency', () {
-      test('should format positive number as currency with default decimals', () {
-        expect(1234.56.toCurrency(), equals('\$1,234.56'));
-      });
+      test(
+        'should format positive number as currency with default decimals',
+        () {
+          expect(1234.56.toCurrency(), equals('\$1,234.56'));
+        },
+      );
       test('should format negative number and respect decimals', () {
-        expect((-1234.5).toCurrency(symbol: '€', decimals: 0), equals('-€1,235'));
+        expect(
+          (-1234.5).toCurrency(symbol: '€', decimals: 0),
+          equals('-€1,235'),
+        );
       });
     });
 
@@ -74,7 +80,10 @@ void main() {
         expect(0.toFileSizeString(), equals('0 B'));
         expect(512.toFileSizeString(), equals('512 B'));
         expect(1536.toFileSizeString(), equals('1.5 KB'));
-        expect((1024 * 1024 * 1.5).toInt().toFileSizeString(), equals('1.5 MB'));
+        expect(
+          (1024 * 1024 * 1.5).toInt().toFileSizeString(),
+          equals('1.5 MB'),
+        );
       });
     });
 
