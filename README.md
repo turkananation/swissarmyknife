@@ -2,6 +2,15 @@
 
 Production-grade Dart utilities behind one import.
 
+```text
+      _____          _          ___                  __ __      _ ____
+     / ___/      __ (_)____    /   |  _________ ___ / //_/___  (_) __/__
+     \__ \ | /| / // // __ \  / /| | / ___/ __ `__ \ ,< / __ \/ / /_/ _ \
+    ___/ / |/ |/ // // /_/ / / ___ |/ /  / / / / / / /| / / / / / __/  __/
+   /____/|__/|__//_// .___/ /_/  |_/_/  /_/ /_/ /_/_/ |_/_/ /_/_/  \___/
+                   /_/          production-grade Dart utilities
+```
+
 [![Pub Version](https://img.shields.io/pub/v/swissarmyknife.svg)](https://pub.dev/packages/swissarmyknife)
 [![CI](https://github.com/turkananation/swissarmyknife/actions/workflows/ci.yml/badge.svg)](https://github.com/turkananation/swissarmyknife/actions/workflows/ci.yml)
 [![Docs](https://github.com/turkananation/swissarmyknife/actions/workflows/pages.yml/badge.svg)](https://turkananation.github.io/swissarmyknife/)
