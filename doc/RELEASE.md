@@ -37,3 +37,16 @@ dart pub publish
 ```
 
 Record the final pub.dev URL in the GitHub release notes.
+
+## Wiki
+
+The canonical wiki source lives in `wiki/`. GitHub only exposes
+`swissarmyknife.wiki.git` after the first wiki page has been created once in
+the GitHub UI. After that one-time bootstrap, the **Wiki Sync** workflow keeps
+the live GitHub wiki aligned with the committed Markdown files.
+
+To bootstrap:
+
+1. Open <https://github.com/turkananation/swissarmyknife/wiki>.
+2. Create the first `Home` page with the contents of `wiki/Home.md`.
+3. Run the **Wiki Sync** workflow from GitHub Actions.

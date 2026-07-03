@@ -14,3 +14,11 @@ The release gate covers formatting, analysis, tests, web compilation, dartdoc,
 pub publish dry-run, and Jaspr site build.
 
 Do not move a published tag. Fix forward with the next version.
+
+## Wiki
+
+The wiki source lives in `wiki/`.
+
+If `swissarmyknife.wiki.git` does not exist yet, create the first `Home` page
+once through the GitHub wiki UI using `wiki/Home.md`, then run the **Wiki Sync**
+workflow. Future wiki updates sync from the committed Markdown files.

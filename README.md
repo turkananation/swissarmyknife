@@ -9,6 +9,8 @@ Production-grade Dart utilities behind one import.
 [![Pub Version](https://img.shields.io/pub/v/swissarmyknife.svg)](https://pub.dev/packages/swissarmyknife)
 [![CI](https://github.com/turkananation/swissarmyknife/actions/workflows/ci.yml/badge.svg)](https://github.com/turkananation/swissarmyknife/actions/workflows/ci.yml)
 [![Docs](https://github.com/turkananation/swissarmyknife/actions/workflows/pages.yml/badge.svg)](https://turkananation.github.io/swissarmyknife/)
+[![Wiki](https://img.shields.io/badge/wiki-release%20playbook-111827.svg)](https://github.com/turkananation/swissarmyknife/wiki)
+[![Wiki Sync](https://github.com/turkananation/swissarmyknife/actions/workflows/sync-wiki.yml/badge.svg)](https://github.com/turkananation/swissarmyknife/actions/workflows/sync-wiki.yml)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 SwissArmyKnife is a focused Dart toolkit for the small pieces every serious
@@ -106,6 +108,7 @@ configuration.
 - Cookbook: [doc/COOKBOOK.md](doc/COOKBOOK.md)
 - Release process: [doc/RELEASE.md](doc/RELEASE.md)
 - Platform support: [doc/PLATFORM_SUPPORT.md](doc/PLATFORM_SUPPORT.md)
+- GitHub wiki source: [wiki/](wiki/)
 
 ## Verification
 

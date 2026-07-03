@@ -1,0 +1,54 @@
+name: Wiki Sync
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "wiki/**"
+      - ".github/workflows/sync-wiki.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: wiki-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Sync committed wiki pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sync wiki repository
+        env:
+          WIKI_TOKEN: ${{ secrets.WIKI_SYNC_TOKEN || github.token }}
+          WIKI_REPO: https://github.com/${{ github.repository }}.wiki.git
+        run: |
+          set -euo pipefail
+
+          if ! git ls-remote "$WIKI_REPO" HEAD >/dev/null 2>&1; then
+            echo "::warning::GitHub wiki repository is not initialized yet. Create the first wiki page once in the GitHub UI, then rerun this workflow."
+            exit 0
+          fi
+
+          git clone "https://x-access-token:${WIKI_TOKEN}@github.com/${{ github.repository }}.wiki.git" "$RUNNER_TEMP/wiki"
+          rsync -a --delete --exclude ".git" wiki/ "$RUNNER_TEMP/wiki/"
+
+          cd "$RUNNER_TEMP/wiki"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet -- .; then
+            echo "Wiki is already in sync."
+            exit 0
+          fi
+
+          git add -A
+          git commit -m "Sync wiki from repository source"
+          branch="$(git symbolic-ref --short HEAD)"
+          git push origin "HEAD:${branch}"
