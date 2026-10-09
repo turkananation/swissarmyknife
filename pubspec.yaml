@@ -1,7 +1,8 @@
 name: swissarmyknife
 description: >-
   Production-grade Dart utilities with extensions, functional types, async
-  control, validation, HTTP helpers, caching, and app infrastructure.
+  control, validation, HTTP helpers, caching, and app infrastructure for apps
+  and packages.
 version: 0.1.0
 license: MIT
 homepage: https://turkananation.github.io/swissarmyknife/
